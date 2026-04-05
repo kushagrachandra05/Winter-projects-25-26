@@ -89,20 +89,20 @@ compression ratio while the pruning phase simultaneously acted as a
 regularizer, preventing overfitting and actively improving the model's
 predictive accuracy.
 
--   **Disk Space:** 37.57 MB (Baseline) $\rightarrow$ 0.61 MB
+-   **Disk Space:** 37.57 MB (Baseline) → 0.61 MB
     (Compressed)
 
--   **Compression Ratio:** 61.6$\times$
+-   **Compression Ratio:** 61.6 times
 
--   **Test Accuracy:** 90.11% (Baseline) $\rightarrow$ 93.26%
+-   **Test Accuracy:** 90.11% (Baseline) → 93.26%
     (Compressed)
 
 -   **Accuracy Gain:** +3.15%
 
--   **Average Bits/Weight:** $\sim$`<!-- -->`{=html}0.52 bits (down from
+-   **Average Bits/Weight:** ~0.52 bits (down from
     32.0 FP32)
 
--   **Peak Runtime Memory:** 208.54 MB $\rightarrow$ 241.29 MB (Expected
+-   **Peak Runtime Memory:** 208.54 MB → 241.29 MB (Expected
     overhead for on-the-fly reconstruction)
 
 ## Notes
