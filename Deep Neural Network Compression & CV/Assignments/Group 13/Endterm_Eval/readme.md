@@ -1,6 +1,6 @@
-# Deep Compression: 3-Stage CNN Optimization for Edge Deployment
+# Deep Compression: A 3-Stage Pipeline for Resource-Constrained Deployment
 
-This repository implements the full **Deep Compression** pipeline—Pruning, Trained Quantization, and Huffman Coding—as described in the foundational research by Han et al. (2015). The goal is to shrink a VGG-style CNN (`SmallCIFARNet`) so it can fit entirely within on-chip SRAM, bypassing the energy-expensive "memory wall" of off-chip DRAM.
+This repository implements the full **Deep Compression** pipeline—Pruning, Trained Quantization, and Huffman Coding—as described in the paper by Han et al. (2015). The goal is to shrink a VGG-style CNN (`SmallCIFARNet`) so it can fit entirely within on-chip SRAM, bypassing the energy-expensive "memory wall" of off-chip DRAM.
 
 ## 🚀 Key Features
 * **Stage 1: Global L1 Pruning:** Achieves 90% sparsity by removing low-magnitude weights globally across the network.
@@ -12,13 +12,43 @@ This repository implements the full **Deep Compression** pipeline—Pruning, Tra
 
 ## 🛠️ Installation & Setup
 
-### 1. Clone and Environment
-```bash
-git clone [https://github.com/your-username/deep-compression-cifar10.git](https://github.com/your-username/deep-compression-cifar10.git)
-cd deep-compression-cifar10
+### 1. Environment Activation
+Open the project folder in your terminal and activate the virtual environment:
 
-# Activate your virtual environment
+```bash
+# Activate the virtual environment
 source .venv/bin/activate 
 
-# Install dependencies
+# Install required dependencies
 pip install torch torchvision numpy scikit-learn
+```
+
+### 2. Execution
+
+To run the full end-to-end pipeline (Training -> Pruning -> Quantization -> Huffman):
+```bash
+python3 main.py
+```
+
+## 📁 Project Structure
+* compression/: Core optimization logic.
+
+* **prune.py: Magnitude-based global pruning.
+
+* **quantization.py: K-Means clustering and weight sharing.
+
+* **conv2d.py / linear.py: Custom wrappers handling mask and indices buffers.
+
+* **models/: model_cifar.py defines the VGG-style architecture.
+
+* utils/:
+
+training.py: Standard loops + Vectorized Centroid Update logic for M1 performance.
+
+huffman.py: Stage 3 entropy encoding and relative stride calculation.
+
+loading.py: Custom .npz serialization to save actual disk space.
+
+performance.py: Benchmarks for latency (ms) and Peak RAM (MB).
+
+config.py: Centralized hyperparameters and device configuration.
